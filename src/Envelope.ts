@@ -5,31 +5,31 @@ export default class Envelope {
     private topRight ?: Coordinate;
 
     public constructor(bottomLeft ?: Coordinate, topRight ?: Coordinate) {
-        this.bottomLeft = bottomLeft;
-        this.topRight = topRight;
+        this.bottomLeft = bottomLeft || [];
+        this.topRight = topRight || [];
     }
 
     public isEmpty(): boolean {
-        return 
+        return !isFinite(this.bottomLeft[0])
     }
-    
+
     public getXmin(): number {
-        return this.bottomLeft ? this.bottomLeft[0] : Number.NaN
+        return this.bottomLeft[0];
     }
 
     public getYmin(): number {
-        return this.bottomLeft ? this.bottomLeft[1] : Number.NaN
+        return this.bottomLeft[1];
     }
 
     public getXmax(): number {
-        return this.topRight ? this.topRight[0] : Number.NaN 
+        return this.topRight[0];
     }
 
     public getYmax(): number {
-        return this.topRight ? this.topRight[1] : Number.NaN
+        return this.topRight[1];
     }
 
     public toString(): string {
-        return 
+        return "["+this.bottomLeft[0]+", "+this.bottomLeft[1]+", "+this.topRight[0]+", "+this.topRight[1]+"]"
     }
 };
