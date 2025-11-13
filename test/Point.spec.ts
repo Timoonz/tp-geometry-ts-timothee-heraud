@@ -31,5 +31,13 @@ describe("test Point", () => {
         expect(p.x()).to.equal(4.0);
         expect(p.y()).to.equal(5.0);
     });
+        it("test copy point", () => {
+        const a = new Point([0.0,0.0]);
+        const b = a.clone();
+        expect(b).to.not.equal(a);
+        expect(b.getCoordinate()).to.deep.equal(a.getCoordinate());
+        a.translate(1.0, 1.0);
+        expect(b.getCoordinate()).to.not.deep.equal(a.getCoordinate());
+    });
 });
 
