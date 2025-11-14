@@ -2,6 +2,7 @@ import Point from "./Point"
 import Geometry from "./Geometry";
 import Envelope from "./Envelope";
 import EnvelopeBuilder from "./EnvelopeBuilder";
+import GeometryVisitor from "./GeometryVisitor";
 
 export default class LineString implements Geometry{
     private points?: Array<Point>;
@@ -41,6 +42,10 @@ export default class LineString implements Geometry{
         }
         const result = builder.build();
         return result;
+    }
+
+    accept(visitor: GeometryVisitor){
+        return visitor.visitLineString(this);
     }
 
     getNumPoints(): number {
