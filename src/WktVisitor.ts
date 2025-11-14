@@ -1,4 +1,5 @@
 import GeometryVisitor from "./GeometryVisitor";
+import Coordinate from "./Coordinate";
 import LineString from "./LineString";
 import Point from "./Point";
 import WktWriter from "../src/WktWriter";
@@ -10,19 +11,40 @@ export default class WktVisitor implements GeometryVisitor {
     private buffer: string;
 
     public visitPoint(point: Point) {
-        const writer = new WktWriter();
-        const result = writer.write(point);
-        this.buffer = result;
+        if (point.isEmpty()){
+            this.buffer = "POINT EMPTY";
+        }
+        else {
+            let result = "POINT(";
+            result += this.writeCoordinates(point.getCoordinate());
+            result += ")";
+            this.buffer = result;
+        }
     };
 
     public visitLineString(lineString: LineString) {
-        const writer = new WktWriter();
-        const result = writer.write(lineString);
-        this.buffer = result;
+        if (lineString.isEmpty()){
+            this.buffer = "LINESTRING EMPTY";
+        }
+        else {
+            let result = "LINESTRING(";
+            for (let i = 0; i < lineString.getNumPoints(); i++){
+                result += this.writeCoordinates(lineString.getPointN(i).getCoordinate())
+                if (i != lineString.getNumPoints() - 1){
+                    result += ",";
+                }
+            }
+            result += ")";
+            this.buffer = result;
+        }
     };
 
     public getResult(): string {
         return this.buffer;
+    };
+
+    private writeCoordinates(c: Coordinate) {
+        return c[0].toFixed(1)+" "+c[1].toFixed(1);
     };
 
 };
