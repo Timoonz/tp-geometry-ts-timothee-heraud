@@ -10,6 +10,7 @@ describe("test Point", () => {
         expect(Number.isNaN(p.y()));
         expect(p.isEmpty()).to.be.true;
         expect(p.getType()).to.equal("Point");
+        expect(p.getEnvelope().isEmpty()).to.be.true;
     });
     it("test constructor with coordinates", () => {
         const p = new Point([3.0,4.0]);
@@ -18,18 +19,22 @@ describe("test Point", () => {
         expect(p.y()).to.equal(4.0);
         expect(p.isEmpty()).to.be.false;
         expect(p.getType()).to.equal("Point");
+        //envelope of a point should be a point
+        expect(p.getEnvelope().toString()).to.equal("[3.0, 4.0, 3.0, 4.0]");
     });
     it("test empty translation of a point", () => {
         const p = new Point([3.0,4.0]);
         p.translate(0.0, 0.0);
         expect(p.x()).to.equal(3.0);
         expect(p.y()).to.equal(4.0);
+        expect(p.getEnvelope().toString()).to.equal("[3.0, 4.0, 3.0, 4.0]");
     });
     it("test translation of a point", () => {
         const p = new Point([3.0,4.0]);
         p.translate(1.0, 1.0);
         expect(p.x()).to.equal(4.0);
         expect(p.y()).to.equal(5.0);
+        expect(p.getEnvelope().toString()).to.equal("[4.0, 5.0, 4.0, 5.0]");
     });
         it("test copy point", () => {
         const a = new Point([0.0,0.0]);
@@ -38,6 +43,8 @@ describe("test Point", () => {
         expect(b.getCoordinate()).to.deep.equal(a.getCoordinate());
         a.translate(1.0, 1.0);
         expect(b.getCoordinate()).to.not.deep.equal(a.getCoordinate());
+        expect(a.getEnvelope().toString()).to.equal("[1.0, 1.0, 1.0, 1.0]");
+        expect(b.getEnvelope().toString()).to.equal("[0.0, 0.0, 0.0, 0.0]");
     });
 });
 

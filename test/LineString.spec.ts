@@ -10,6 +10,7 @@ describe("test LineString", () => {
         expect(l.getPointN(10)).to.equal(undefined);
         expect(l.isEmpty()).to.be.true;
         expect(l.getType()).to.equal("LineString");
+        expect(l.getEnvelope().isEmpty()).to.be.true;
     });
     it("test constructor with points", () => {
         const a = new Point([0.0,0.0]);
@@ -20,6 +21,8 @@ describe("test LineString", () => {
         expect(g.getPointN(1)).to.equal(b);
         expect(g.isEmpty()).to.be.false;
         expect(g.getType()).to.equal("LineString");
+        expect(g.getEnvelope().toString()).to.equal("[0.0, 0.0, 3.0, 4.0]");
+
     });
     it("test translate LineString", () => {
         const a = new Point([0.0,0.0]);
@@ -28,6 +31,7 @@ describe("test LineString", () => {
         g.translate(1.0, 1.0);
         expect(g.getPointN(0).getCoordinate()).to.deep.equal([1.0,1.0]);
         expect(g.getPointN(1).getCoordinate()).to.deep.equal([4.0,5.0]);
+        expect(g.getEnvelope().toString()).to.equal("[1.0, 1.0, 4.0, 5.0]");
     });
     it("test copy LineString", () => {
         const p1 = new Point([0.0,0.0]);
@@ -37,6 +41,9 @@ describe("test LineString", () => {
         l1.translate(1.0, 1.0);
         expect(l1.getPointN(0).getCoordinate()).to.not.deep.equal(l2.getPointN(0).getCoordinate());
         expect(l1.getPointN(1).getCoordinate()).to.not.deep.equal(l2.getPointN(1).getCoordinate());
+        //test the envelopes for the translated 
+        expect(l1.getEnvelope().toString()).to.equal("[1.0, 1.0, 2.0, 3.0]");
+        expect(l2.getEnvelope().toString()).to.equal("[0.0, 0.0, 1.0, 2.0]");
     });
 
 });

@@ -1,5 +1,7 @@
 import Point from "./Point"
 import Geometry from "./Geometry";
+import Envelope from "./Envelope";
+import EnvelopeBuilder from "./EnvelopeBuilder";
 
 export default class LineString implements Geometry{
     private points?: Array<Point>;
@@ -30,6 +32,15 @@ export default class LineString implements Geometry{
        for (let point of this.points){
             point.translate(dx, dy);
        }     
+    }
+
+    getEnvelope(): Envelope {
+        const builder = new EnvelopeBuilder();
+        for (let point of this.points) {
+            builder.insert(point.getCoordinate());
+        }
+        const result = builder.build();
+        return result;
     }
 
     getNumPoints(): number {
