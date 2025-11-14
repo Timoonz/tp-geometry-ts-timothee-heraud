@@ -5,24 +5,27 @@ import Point from "./Point";
 
 export default class LogGeometryVisitor implements GeometryVisitor {
     
-    public visitPoint(point: Point): string {
+    constructor(
+        private log = console.log
+    ){
+
+    }
+
+    public visitPoint(point: Point): void {
         if (point.isEmpty()){
-            //en temps normal: console.log("Je suis un point vide.")
-            //pour les tests: return string
-            return "Je suis un point vide.";
+           this.log("Je suis un point vide.");
         }
         else {
-            //console.log(...)
-            return "Je suis un point avec x="+point.getCoordinate()[0].toFixed(1)+" et y="+point.getCoordinate()[1].toFixed(1)+".";
+            this.log("Je suis un point avec x="+point.getCoordinate()[0].toFixed(1)+" et y="+point.getCoordinate()[1].toFixed(1)+".");
         }
     }
 
-    public visitLineString(lineString: LineString): string {
+    public visitLineString(lineString: LineString): void {
         if (lineString.isEmpty()){
-            return "Je suis une polyligne vide.";
+            this.log("Je suis une polyligne vide.");
         }
         else {
-            return "Je suis une polyligne définie par "+lineString.getNumPoints()+" point(s)."
+            this.log("Je suis une polyligne définie par "+lineString.getNumPoints()+" point(s).");
         }
     }
 }

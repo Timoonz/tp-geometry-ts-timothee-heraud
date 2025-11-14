@@ -6,26 +6,45 @@ import LogGeometryVisitor from "../src/LogGeometryVisitor"
 
 describe("test LogGeometryVisitor", () => {
     it("test GeometryVisitor empty Point", () => {
-        const visitor = new LogGeometryVisitor();
+        let result = "AAA";
+        const visitor = new LogGeometryVisitor((message:string)=>{
+            result = message;
+        });
         const emptyPoint = new Point();
-        expect(emptyPoint.accept(visitor)).to.equal("Je suis un point vide.");
+        emptyPoint.accept(visitor);
+        expect(result).to.equal("Je suis un point vide.");
     });
+
     it("test GeometryVisitor Point with coordinates", () => {
-        const visitor = new LogGeometryVisitor();
+        let result = "";
+        const visitor = new LogGeometryVisitor((message)=>{
+            result = message;
+        });
         const p = new Point([3.0,4.0]);
-        expect(p.accept(visitor)).to.equal("Je suis un point avec x=3.0 et y=4.0.");
+        p.accept(visitor);
+        expect(result).to.equal("Je suis un point avec x=3.0 et y=4.0.");
     });
+
     it("test GeometryVisitor empty LineString", () => {
-        const visitor = new LogGeometryVisitor();
+        let result = "";
+        const visitor = new LogGeometryVisitor((message)=>{
+            result = message;
+        });
         const emptyLineString = new LineString();
-        expect(emptyLineString.accept(visitor)).to.equal("Je suis une polyligne vide.");
+        emptyLineString.accept(visitor);
+        expect(result).to.equal("Je suis une polyligne vide.");
     });
+
     it("test GeometryVisitor LineString with Points", () => {
-        const visitor = new LogGeometryVisitor();
+        let result = "";
+        const visitor = new LogGeometryVisitor((message)=>{
+            result = message;
+        });
         const p1 = new Point([3.0,4.0]);
         const p2 = new Point([4.0,5.0]);
         const p3 = new Point([6.0,8.0]);
         const l =  new LineString([p1, p2, p3]);
-        expect(l.accept(visitor)).to.equal("Je suis une polyligne définie par 3 point(s).");
+        l.accept(visitor);
+        expect(result).to.equal("Je suis une polyligne définie par 3 point(s).");
     });   
 });
