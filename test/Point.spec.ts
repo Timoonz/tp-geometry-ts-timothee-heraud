@@ -11,6 +11,7 @@ describe("test Point", () => {
         expect(p.isEmpty()).to.be.true;
         expect(p.getType()).to.equal("Point");
         expect(p.getEnvelope().isEmpty()).to.be.true;
+        expect(p.asText()).to.equal("POINT EMPTY");
     });
     it("test constructor with coordinates", () => {
         const p = new Point([3.0,4.0]);
@@ -21,6 +22,7 @@ describe("test Point", () => {
         expect(p.getType()).to.equal("Point");
         //envelope of a point should be a point
         expect(p.getEnvelope().toString()).to.equal("[3.0, 4.0, 3.0, 4.0]");
+        expect(p.asText()).to.equal("POINT(3.0 4.0)")
     });
     it("test empty translation of a point", () => {
         const p = new Point([3.0,4.0]);

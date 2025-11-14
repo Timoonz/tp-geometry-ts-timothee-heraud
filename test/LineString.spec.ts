@@ -11,6 +11,7 @@ describe("test LineString", () => {
         expect(l.isEmpty()).to.be.true;
         expect(l.getType()).to.equal("LineString");
         expect(l.getEnvelope().isEmpty()).to.be.true;
+        expect(l.asText()).to.equal("LINESTRING EMPTY");
     });
     it("test constructor with points", () => {
         const a = new Point([0.0,0.0]);
@@ -22,6 +23,7 @@ describe("test LineString", () => {
         expect(g.isEmpty()).to.be.false;
         expect(g.getType()).to.equal("LineString");
         expect(g.getEnvelope().toString()).to.equal("[0.0, 0.0, 3.0, 4.0]");
+        expect(g.asText()).to.equal("LINESTRING(0.0 0.0,3.0 4.0)");
 
     });
     it("test translate LineString", () => {
