@@ -30,6 +30,6 @@ export default class Envelope {
     }
 
     public toString(): string {
-        return "["+this.bottomLeft[0]+", "+this.bottomLeft[1]+", "+this.topRight[0]+", "+this.topRight[1]+"]"
+        return "["+this.bottomLeft[0].toFixed(1)+", "+this.bottomLeft[1].toFixed(1)+", "+this.topRight[0].toFixed(1)+", "+this.topRight[1].toFixed(1)+"]"
     }
 };

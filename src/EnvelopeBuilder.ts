@@ -15,9 +15,17 @@ export default class EnvelopeBuilder {
     };
 
     public build(): Envelope {
-            const bottomLeft = [this.xmin, this.ymin];
-            const topRight = [this.xmax, this.ymax];
-            const envelope = new Envelope(bottomLeft, topRight);
-            return envelope;
+            let bottomLeft = [this.xmin, this.ymin];
+            let topRight = [this.xmax, this.ymax];
+            //code pas très beau
+            if (bottomLeft[0] == Infinity){
+                const envelope = new Envelope();
+                return envelope;
+            }
+            else{
+                const envelope = new Envelope(bottomLeft, topRight);
+                return envelope;
+            }
+
     };
 };
