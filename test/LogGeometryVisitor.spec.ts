@@ -5,7 +5,7 @@ import LineString from "../src/LineString";
 import LogGeometryVisitor from "../src/LogGeometryVisitor"
 
 describe("test LogGeometryVisitor", () => {
-    it("test GeometryVisitor empty Point", () => {
+    it("test GeometryVisitor avec un Point vide", () => {
         let result = "AAA";
         const visitor = new LogGeometryVisitor((message:string)=>{
             result = message;
@@ -15,7 +15,7 @@ describe("test LogGeometryVisitor", () => {
         expect(result).to.equal("Je suis un point vide.");
     });
 
-    it("test GeometryVisitor Point with coordinates", () => {
+    it("test GeometryVisitor avec un Point non vide", () => {
         let result = "";
         const visitor = new LogGeometryVisitor((message)=>{
             result = message;
@@ -25,7 +25,7 @@ describe("test LogGeometryVisitor", () => {
         expect(result).to.equal("Je suis un point avec x=3.0 et y=4.0.");
     });
 
-    it("test GeometryVisitor empty LineString", () => {
+    it("test GeometryVisitor avec une LineString vide", () => {
         let result = "";
         const visitor = new LogGeometryVisitor((message)=>{
             result = message;
@@ -35,7 +35,7 @@ describe("test LogGeometryVisitor", () => {
         expect(result).to.equal("Je suis une polyligne vide.");
     });
 
-    it("test GeometryVisitor LineString with Points", () => {
+    it("test GeometryVisitor avec une LineString non vide", () => {
         let result = "";
         const visitor = new LogGeometryVisitor((message)=>{
             result = message;
