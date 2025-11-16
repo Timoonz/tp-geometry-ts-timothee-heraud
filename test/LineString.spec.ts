@@ -13,7 +13,7 @@ describe("test LineString", () => {
         expect(l.getEnvelope().isEmpty()).to.be.true;
         expect(l.asText()).to.equal("LINESTRING EMPTY");
     });
-    it("test constructor with points", () => {
+    it("test constructor with Points", () => {
         const a = new Point([0.0,0.0]);
         const b = new Point([3.0,4.0]);
         const g = new LineString([a,b]);

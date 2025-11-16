@@ -8,42 +8,42 @@ import GeometryVisitor from "./GeometryVisitor";
 export default class Point extends AbstractGeometry{
   private coordinate?: Coordinate;
 
-  constructor(coordinate?: Coordinate) {
+  public constructor(coordinate?: Coordinate) {
     super();
     this.coordinate = coordinate ? coordinate : [];
   }
 
-  getType(): string {
+  public getType(): string {
     return "Point";
   }
 
-  isEmpty(): boolean {
+  public isEmpty(): boolean {
     return this.coordinate.length == 0;
   }
 
-  clone(): Point {
+  public clone(): Point {
     const clone = new Point([this.x(), this.y()]);
     return clone;
   }
 
-  translate(dx: number, dy: number) {
+  public translate(dx: number, dy: number) {
     this.coordinate[0] += dx;
     this.coordinate[1] += dy;
   }
 
-  accept(visitor: GeometryVisitor){
+  public accept(visitor: GeometryVisitor){
     return visitor.visitPoint(this);
   }
 
-  getCoordinate(): Coordinate {
+  public getCoordinate(): Coordinate {
     return this.coordinate;
   }
 
-  x(): number {
+  public x(): number {
     return this.coordinate[0];
   }
 
-  y(): number {
+  public y(): number {
     return this.coordinate[1];
   }
 

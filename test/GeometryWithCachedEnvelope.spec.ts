@@ -18,7 +18,7 @@ describe("test GeometryWitCachedEnvelope", () => {
         expect(dec.asText()).to.equal("POINT EMPTY");
     });
 
-    it("single point with GeometryCachedEnvelope", () => {
+    it("test single point with GeometryCachedEnvelope", () => {
         const p = new Point([3.0, 3.0]);
         const dec = new GeometryWithCachedEnvelope(p);
 
@@ -38,7 +38,7 @@ describe("test GeometryWitCachedEnvelope", () => {
 
     });
 
-    it("LineString with GeometryCachedEnvelope", () => {
+    it("test LineString with GeometryCachedEnvelope", () => {
         const p1 = new Point([0.0, 0.0]);
         const p2 = new Point([1.0, 1.0]);
         const p3 = new Point([2.0, 2.0]);
@@ -62,7 +62,7 @@ describe("test GeometryWitCachedEnvelope", () => {
 
     });
 
-    it("test du clonage de GeometryWithCachedEnvelope", () => {
+    it("test clone GeometryWithCachedEnvelope", () => {
         const p = new Point([1.0, 1.0]);
         const dec = new GeometryWithCachedEnvelope(p);
         dec.getEnvelope();
@@ -73,7 +73,7 @@ describe("test GeometryWitCachedEnvelope", () => {
 
     });
 
-    it("test du accept de GeometryWithCachedEnvelope (avec LogGeometryVisitor)", () => {
+    it("test accept GeometryWithCachedEnvelope (with LogGeometryVisitor)", () => {
         let result = "";
         const visitor = new LogGeometryVisitor((message)=>{
             result = message;

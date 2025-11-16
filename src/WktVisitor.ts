@@ -3,6 +3,7 @@ import Coordinate from "./Coordinate";
 import LineString from "./LineString";
 import Point from "./Point";
 import WktWriter from "../src/WktWriter";
+import GeometryCollection from "./GeometryCollection";
 
 
 
@@ -29,7 +30,7 @@ export default class WktVisitor implements GeometryVisitor {
         else {
             let result = "LINESTRING(";
             for (let i = 0; i < lineString.getNumPoints(); i++){
-                result += this.writeCoordinates(lineString.getPointN(i).getCoordinate())
+                result += this.writeCoordinates(lineString.getPointN(i).getCoordinate());
                 if (i != lineString.getNumPoints() - 1){
                     result += ",";
                 }
@@ -45,6 +46,24 @@ export default class WktVisitor implements GeometryVisitor {
 
     private writeCoordinates(c: Coordinate) {
         return c[0].toFixed(1)+" "+c[1].toFixed(1);
+    };
+
+    public visitGeometryCollection(g: GeometryCollection) {
+        if (g.isEmpty()){
+            this.buffer = "GEOMETRYCOLLECTION EMPTY";
+        }
+        else {
+            let result = "GEOMETRYCOLLECTION(";
+            for (let i = 0; i < g.getNumGeometries(); i++){
+                const geom = g.getGeometryN(i);
+                    result += geom.asText();
+                if(i < g.getNumGeometries() - 1){
+                    result += ",";
+                }
+            }
+            result += ")";
+            this.buffer = result;
+        }
     };
 
 };
