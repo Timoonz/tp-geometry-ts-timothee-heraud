@@ -31,7 +31,7 @@ export default class Point extends AbstractGeometry{
     this.coordinate[1] += dy;
   }
 
-  public accept(visitor: GeometryVisitor){
+  public accept<T>(visitor: GeometryVisitor<T>){
     return visitor.visitPoint(this);
   }
 

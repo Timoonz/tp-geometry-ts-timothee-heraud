@@ -37,7 +37,7 @@ export default class LineString extends AbstractGeometry{
        }     
     }
 
-    accept(visitor: GeometryVisitor){
+    accept<T>(visitor: GeometryVisitor<T>): T{
         return visitor.visitLineString(this);
     }
 

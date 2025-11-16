@@ -7,7 +7,7 @@ import GeometryCollection from "./GeometryCollection";
 
 
 
-export default class WktVisitor implements GeometryVisitor {
+export default class WktVisitor implements GeometryVisitor<string> {
     
     private buffer: string;
 

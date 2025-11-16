@@ -7,7 +7,7 @@ import GeometryCollection from "../src/GeometryCollection";
 
 describe("test LogGeometryVisitor", () => {
     it("test GeometryVisitor with empty Point", () => {
-        let result = "AAA";
+        let result = "";
         const visitor = new LogGeometryVisitor((message:string)=>{
             result = message;
         });
